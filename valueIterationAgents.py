@@ -56,14 +56,14 @@ class ValueIterationAgent(ValueEstimationAgent):
                         # print(next_state, prob, self.values[next_state], self.mdp.getReward(state, ac, next_state))
 
                         if self.mdp.isTerminal(next_state):
-                            val += self.mdp.getReward(state, ac, next_state) * prob / discount
+                            val += self.mdp.getReward(state, ac, next_state) * prob
                         else:
-                            val += self.values[next_state] * prob
+                            val += (self.values[next_state]*discount+self.mdp.getReward(state, ac, next_state)) * prob
 
                     if val >= next_max:
                         next_max = val
 
-                self.values[state] = discount * next_max
+                self.values[state] = next_max
 
         # print(self.values)
 
