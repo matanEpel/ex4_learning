@@ -41,7 +41,7 @@ class ValueIterationAgent(ValueEstimationAgent):
 
         "*** YOUR CODE HERE ***"
         for i in range(iterations):
-
+            copy_values = self.values.copy()
             for state in self.mdp.getStates():
                 if self.mdp.isTerminal(state):
                     continue
@@ -53,17 +53,12 @@ class ValueIterationAgent(ValueEstimationAgent):
                     next_moves = self.mdp.getTransitionStatesAndProbs(state, ac)
                     val = 0
                     for next_state, prob in next_moves:
-                        # print(next_state, prob, self.values[next_state], self.mdp.getReward(state, ac, next_state))
-
-                        if self.mdp.isTerminal(next_state):
-                            val += self.mdp.getReward(state, ac, next_state) * prob
-                        else:
-                            val += (self.values[next_state]*discount+self.mdp.getReward(state, ac, next_state)) * prob
-
-                    if val >= next_max:
+                        val += (self.values[next_state] * discount + self.mdp.getReward(state, ac, next_state)) * prob
+                    if val > next_max:
                         next_max = val
 
-                self.values[state] = next_max
+                copy_values[state] = next_max
+            self.values = copy_values
 
         # print(self.values)
 
