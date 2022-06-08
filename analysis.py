@@ -54,9 +54,20 @@ def question3e():
   # If not possible, return 'NOT POSSIBLE'
 
 def question6():
-  answerEpsilon = None
-  answerLearningRate = None
-  return answerEpsilon, answerLearningRate
+  # answerEpsilon = None
+  # answerLearningRate = None
+  # return answerEpsilon, answerLearningRate
+
+  """
+  This is not possible.
+  Our learning rate needs to be low, to converge to an optimal solution.
+
+  If our epsilon not high enough, because there is a rewarding tile adjacent to us, then the learner will very quickly converge to only going left.
+  If our epsilon is high enough, then we have a chance (a very small one though) of reaching the tile on the right.
+  But, even if we reach those tiles and learn about the rewarding tile on the right, we won't follow our own policy, because the epsilon is very high
+  """
+
+  return 'NOT POSSIBLE'
   # If not possible, return 'NOT POSSIBLE'
   
 if __name__ == '__main__':
