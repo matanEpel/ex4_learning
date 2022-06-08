@@ -44,7 +44,6 @@ class ValueIterationAgent(ValueEstimationAgent):
 
             for state in self.mdp.getStates():
                 if self.mdp.isTerminal(state):
-                    print("STATE")
                     continue
 
                 next_max = float("-inf")
